@@ -20,5 +20,7 @@ from RestAPI import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobs/', views.jobs),
-    path('applications/', views.applications)
+    path('jobs/<int:id>', views.job_detail),
+    path('applications/', views.applications),
+    path('applications/<int:id>', views.application_detail)
 ]

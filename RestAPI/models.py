@@ -34,10 +34,11 @@ class Application(models.Model):
     DEFAULT_STATUS = "AS"
     STATUS_CHOICES = [("UC", "Under Consideration"), ("AS", "Application Submitted"), ("AR", "Application Rejected"), ("PA", "Pending Action"), ("AW", "Application Withdrawn")]
 
+    application_id = models.BigAutoField(primary_key=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=DEFAULT_STATUS)
     applied_on = models.DateTimeField(auto_now_add=True)  
     
     def __str__(self):
-        return self.job.title + ' - ' + str(self.id)
+        return self.job.title + ' - ' + str(self.job.job_id) + '|' + str(self.application_id)
 
