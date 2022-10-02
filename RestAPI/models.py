@@ -16,8 +16,8 @@ class Job(models.Model):
     min_salary = models.IntegerField()
     max_salary = models.IntegerField()
     type = models.CharField(max_length=2, choices=TYPE_CHOICES)
-    created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title + ' - ' + self.company + ', ' + self.location
@@ -36,7 +36,7 @@ class Application(models.Model):
 
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=DEFAULT_STATUS)
-    applied_on = models.DateField(auto_now_add=True)  
+    applied_on = models.DateTimeField(auto_now_add=True)  
     
     def __str__(self):
         return self.job.title + ' - ' + str(self.id)
